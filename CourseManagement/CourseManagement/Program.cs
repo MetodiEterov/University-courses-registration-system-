@@ -1,36 +1,21 @@
+using CourseManagement.Extensions;
+using Microsoft.EntityFrameworkCore;
+using NLog;
+
 namespace CourseManagement
 {
-	public class Program
-	{
-		public static void Main(string[] args)
-		{
-			var builder = WebApplication.CreateBuilder(args);
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            var builder = WebApplication.CreateBuilder(args);
+            LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
+            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+            builder.Services.ConfigureAppServices(connectionString);
 
-			// Add services to the container.
-			builder.Services.AddControllersWithViews();
-
-			var app = builder.Build();
-
-			// Configure the HTTP request pipeline.
-			if (!app.Environment.IsDevelopment())
-			{
-				app.UseExceptionHandler("/Course/Error");
-				// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-				app.UseHsts();
-			}
-
-			app.UseHttpsRedirection();
-			app.UseStaticFiles();
-
-			app.UseRouting();
-
-			app.UseAuthorization();
-
-			app.MapControllerRoute(
-				name: "default",
-				pattern: "{controller=Course}/{action=Index}/{id?}");
-
-			app.Run();
-		}
-	}
+            var app = builder.Build();
+            app.ConfigureMiddleware();
+            app.MigrateDatabase().Run();
+        }
+    }
 }

@@ -1,0 +1,11 @@
+﻿.card {
+    max-width: 35%;
+    margin-top: 10px;
+}
+
+#registerBtn {
+    width: 50%;
+    background-color: darkgrey;
+    box-shadow: 1px 1px 0px #696a72 !important;
+    color: black;
+}

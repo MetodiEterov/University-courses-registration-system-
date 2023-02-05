@@ -1,0 +1,100 @@
+﻿@model IEnumerable<DomainLayer.Entities.Course>
+
+@{
+	ViewData["Title"] = "Courses";
+}
+
+<link href="~/css/courses.css" rel="stylesheet" />
+
+<div class="container">
+	<div class="row hoverText">
+		<a asp-action="Create" class="text-uppercase">Create new course</a>
+	</div>
+
+	<div class="row marginTop20">
+		<p class="text-uppercase marginTop10">Non registered courses:</p>
+		<table class="table table-bordered table-dark textLeft shadowTable marginTop10">
+			<thead>
+				<tr>
+					<th class="col-sm-1">
+						Id
+					</th>
+					<th class="col-sm-5">
+						CourseName
+					</th>
+					<th class="col-sm-2 textCenter">Register</th>
+					<th class="col-sm-2 textCenter">Edit</th>
+					<th class="col-sm-2 textCenter">Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				@if (Model != null && Model.Any())
+				{
+					foreach (var item in Model)
+					{
+						if (item.IsRegistered == false)
+						{
+							<tr>
+								<td>@item.Id</td>
+								<td>@item.CourseName</td>
+								<td class="textCenter"><button id="reg_@item.Id" type="button" class="btn btn-secondary registerBtn" onclick="courseManagement(this)">Register</button></td>
+								<td class="textCenter"><button id="edt_@item.Id" type="button" class="btn btn-secondary registerBtn" onclick="editCourse(this)">Edit</button></td>
+								<td class="textCenter"><button id="del_@item.Id" type="button" class="btn btn-secondary deleteBtn" onclick="courseManagement(this)">Delete</button></td>
+							</tr>
+						}
+					}
+				}
+			</tbody>
+		</table>
+	</div>
+
+	<div class="row">
+		<p class="text-uppercase">Registered courses:</p>
+		<table class="table table-bordered table-dark textLeft shadowTable marginTop10">
+			<thead>
+				<tr>
+					<th class="col-sm-1">
+						Id
+					</th>
+					<th class="col-sm-5">
+						CourseName
+					</th>
+					<th class="col-sm-2 textCenter">Unregister</th>
+					<th class="col-sm-2 textCenter">Edit</th>
+					<th class="col-sm-2 textCenter">Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				@if (Model != null && Model.Any())
+				{
+					foreach (var item in Model)
+					{
+						if (item.IsRegistered == true)
+						{
+							<tr>
+								<td>@item.Id</td>
+								<td>@item.CourseName</td>
+								<td class="textCenter"><button id="unr_@item.Id" type="button" class="btn btn-secondary registerBtn" onclick="courseManagement(this)">Unregister</button></td>
+								<td class="textCenter"><button id="edt_@item.Id" type="button" class="btn btn-secondary deleteBtn" onclick="editCourse(this)">Edit</button></td>
+								<td class="textCenter"><button id="del_@item.Id" type="button" class="btn btn-secondary deleteBtn" onclick="courseManagement(this)">Delete</button></td>
+							</tr>
+						}
+					}
+				}
+			</tbody>
+		</table>
+	</div>
+
+</div>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+
+	<script src="~/js/ajaxrequest.js"></script>
+
+	<script>
+		let tempData = "@TempData["Errors"]";
+	</script>
+}

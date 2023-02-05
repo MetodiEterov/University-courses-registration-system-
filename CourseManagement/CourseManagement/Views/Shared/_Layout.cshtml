@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using DomainLayer.Entities;
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -23,8 +28,31 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Course" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Course" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Course"
+                               asp-action="Courses">Manage courses</a>
                         </li>
+
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item">
+                                <form class="form-inline" asp-controller="Account" asp-action="Logout">
+                                    <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                                </form>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Course" asp-action="Index"
+                               title="Welcome">Welcome, @User.Identity.Name!</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Account" asp-action="Register">Register</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
@@ -32,14 +60,53 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+
+            <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="modalHeader" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h6 class="text-uppercase" id="modalHeader">Errors:</h6>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-center text-uppercase" id="errorBody">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editHeader" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h6 class="text-uppercase" id="editHeader">Edit course:</h6>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form asp-controller="Course" asp-action="EditStudentFromCourse" method="post">
+                            <div class="modal-body" id="editBody">
+                                <div class="form-group">
+                                    <div class="col-sm-12 displayFlex">
+                                        <label class="col-sm-2">Course Id:</label>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control" id="courseId" name="CourseId" readonly="readonly">
+                                        </div>
+                                    </div>
+                                    <input type="text" class="form-control marginTop10" id="courseName" name="CourseName">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit" value="EditStudentFromCourse">Save changes</button>
+                                <button type="button" class="btn btn-secondary" onclick="closeModal()" data-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
             @RenderBody()
         </main>
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - CourseManagement - <a asp-area="" asp-controller="Course" asp-action="Privacy">Privacy</a>
-        </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

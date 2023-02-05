@@ -1,0 +1,11 @@
+﻿.card {
+    max-width: 30%;
+    margin-top: 50px;
+}
+
+#loginBtn {
+    width: 50%;
+    background-color: darkgrey;
+    box-shadow: 1px 1px 0px #696a72 !important;
+    color: black;
+}

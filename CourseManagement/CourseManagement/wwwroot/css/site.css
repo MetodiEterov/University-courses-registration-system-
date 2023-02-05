@@ -1,18 +1,86 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+}
+
+.container {
+    max-width: 95%;
+}
+
+.marginTop10 {
+    margin-top: 10px;
+}
+
+.marginTop50 {
+    margin-top: 50px;
+}
+
+.textLeft {
+    text-align: start;
+}
+
+.textCenter {
+    text-align: center;
+}
+
+.hoverText {
+    color: #0d6efd !important;
+    font-size: 1rem !important;
+}
+
+.shadowStyle {
+    box-shadow: 2px 2px 0px #696a72 !important;
+}
+
+.shadowTable {
+    box-shadow: 2px 2px 0px #696a72 !important;
+}
+
+.ulStyle {
+    display: flex;
+    justify-content: space-between;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+.tableHeader {
+}
+
+button {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.displayFlex {
+    display: flex;
+    align-items: center;
+}
+
+.width70 {
+    width: 70% !important;
+}
+
+.width30 {
+    width: 30% !important;
+}
+
+.marginLeft5 {
+    margin-left: 5px;
 }

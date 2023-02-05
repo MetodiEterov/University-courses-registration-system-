@@ -9,3 +9,9 @@
 /CourseManagement/RepositoryLayer/obj
 /CourseManagement/ServiceLayer/obj
 /CourseManagement/CourseManagement/obj
+/CourseManagement/.vs/ProjectEvaluation
+/CourseManagement/RepositoryLayer/bin/Debug/net6.0
+/CourseManagement/DomainLayer/bin/Debug/net6.0
+/CourseManagement/CourseManagement/appsettings.Development.json
+/CourseManagement/ServiceLayer/bin/Debug/net6.0
+/CourseManagement/LoggingService/bin/Debug/net6.0

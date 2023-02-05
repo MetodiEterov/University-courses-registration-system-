@@ -1,0 +1,53 @@
+﻿@model DomainLayer.DTOs.StudentRegistration
+@{
+	ViewData["Title"] = "Registrations";
+}
+
+<link href="~/css/register.css" rel="stylesheet" />
+
+<div class="container marginTop50">
+	<div class="card mx-auto shadowStyle">
+		<h5 class="card-header tableHeader">Registration form:</h5>
+		<div class="card-body">
+
+			<form asp-action="Register" class="textCenter">
+				<div asp-validation-summary="All" class="text-danger"></div>
+				<div class="form-group textLeft">
+					<label asp-for="StudentName" class="control-label">Student name</label>
+					<input asp-for="StudentName" class="form-control marginTop10" />
+					<span asp-validation-for="StudentName" class="text-danger"></span>
+				</div>
+				<div class="form-group marginTop10 textLeft">
+					<label asp-for="StudentEmail" class="control-label">Student email</label>
+					<input asp-for="StudentEmail" class="form-control marginTop10" />
+					<span asp-validation-for="StudentEmail" class="text-danger"></span>
+				</div>
+				<div class="form-group marginTop10 textLeft">
+					<label asp-for="StudentPassword" class="control-label">Student password</label>
+					<input asp-for="StudentPassword" class="form-control marginTop10" />
+					<span asp-validation-for="StudentPassword" class="text-danger"></span>
+				</div>
+				<div class="form-group marginTop10 textLeft">
+					<label asp-for="ConfirmPassword" class="control-label">Confirm password</label>
+					<input asp-for="ConfirmPassword" class="form-control marginTop10" />
+					<span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+				</div>
+				<div class="form-group marginTop10">
+					<input id="registerBtn" type="submit" value="Register" class="btn btn-secondary" />
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+
+	<script src="~/js/ajaxrequest.js"></script>
+
+	<script>
+		let tempData = "@TempData["Errors"]";
+	</script>
+}

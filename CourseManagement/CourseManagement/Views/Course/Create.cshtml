@@ -1,0 +1,39 @@
+﻿@model IEnumerable<DomainLayer.Entities.Course>
+
+<link href="~/css/create.css" rel="stylesheet" />
+
+<div class="container">
+	<div class="row card mx-auto shadowStyle">
+		<h5 class="card-header">Course registration form:</h5>
+		<div class="card-body">
+			<form method="post" class="textCenter" asp-action="Create" asp-route-returnUrl="@ViewData["ReturnUrl"]">
+				<div class="form-group textLeft">
+					<label for="studentEmail">Enter a new course name:</label>
+					<input type="text" class="form-control marginTop10" id="courseName" name="courseName">
+				</div>
+				<div class="col-sm-12 displayFlex">
+					<button type="submit" class="btn btn-primary marginTop10 width70" id="createBtn">Create</button>
+					<button type="button" class="btn btn-secondary marginTop10 marginLeft5 width30" id="closeBtn" onclick="redirectToCourse()">Close</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+
+	<script src="~/js/ajaxrequest.js"></script>
+
+	<script>
+		let tempData = "@TempData["Errors"]";
+	</script>
+}
+
+
+
+
+

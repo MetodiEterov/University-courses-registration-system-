@@ -1,0 +1,32 @@
+﻿.registerBtn {
+    width: 50%;
+    background-color: darkgrey;
+    box-shadow: 1px 1px 0px #696a72 !important;
+    color: black;
+}
+
+.deleteBtn {
+    width: 50%;
+    background-color: darkgrey;
+    box-shadow: 1px 1px 0px #696a72 !important;
+    color: black;
+}
+
+.editBtn {
+    width: 50%;
+    background-color: darkgrey;
+    box-shadow: 1px 1px 0px #696a72 !important;
+    color: black;
+}
+
+.textCenter {
+    text-align: center;
+}
+
+.paddingLeft40 {
+    padding-left: 40px !important;
+}
+
+.disableCheckbox {
+    pointer-events: none;
+}
