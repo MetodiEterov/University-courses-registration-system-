@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/CourseManagement/.vs/CourseManagement
+/CourseManagement/CourseManagement/bin/Debug/net6.0
+/CourseManagement/DomainLayer/obj
+/CourseManagement/LoggingService/obj
+/CourseManagement/RepositoryLayer/obj
+/CourseManagement/ServiceLayer/obj
+/CourseManagement/CourseManagement/obj
