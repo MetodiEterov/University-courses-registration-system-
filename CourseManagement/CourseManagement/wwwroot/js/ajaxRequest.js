@@ -1,11 +1,10 @@
 ﻿document.addEventListener("DOMContentLoaded", function () {
-    var errors = tempData;
+    let errors = tempData;
     if (errors)
         openModal(errors);
 });
 
 function courseManagement(event) {
-    debugger;
     let operation;
     let btn = event.id;
     let courseIndex = btn.substring(btn.indexOf("_") + 1);
@@ -33,23 +32,21 @@ function courseManagement(event) {
             Operation: operation,
         },
         contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-        success: function (data) {
+        success: function () {
             window.location.href = window.location.href;
         },
-        error: function (req, status, error) {
+        error: function () {
         }
     });
 }
 
-function openModal(msg) {
-    debugger;
-    var myDiv = document.getElementById("errorBody");
-    myDiv.innerHTML = msg;
+function openModal(message) {
+    let errorContent = document.getElementById("errorBody");
+    errorContent.innerHTML = message;
     $("#errorModal").modal("show");
 }
 
 function editCourse(event) {
-    debugger;
     let btn = event.id;
     let courseIndex = btn.substring(btn.indexOf("_") + 1);
     document.getElementById('courseId').value = courseIndex;

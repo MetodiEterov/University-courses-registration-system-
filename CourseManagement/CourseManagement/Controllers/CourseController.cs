@@ -93,8 +93,6 @@ namespace CourseManagement.Controllers
 				case "Delete":
 					await DeleteCourse(course);
 					break;
-				default:
-					break;
 			}
 
 			return await ReturnCourses();
